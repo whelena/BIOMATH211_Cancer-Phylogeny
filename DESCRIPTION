@@ -1,14 +1,16 @@
-Package: BoutrosLabTemplate
+Package: BIOMATH211_Cancer-Phylogeny
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Applying Phylogentic Tools to Cnacer
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Author: Helena Winata
+Maintainer: Helena Winata <hwinata@g.ucla.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 Depends: 
-    R (>= 2.10)
+    R (>= 2.10),
+    BoutrosLab.plotting.general
 Imports:
+    data.table
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
