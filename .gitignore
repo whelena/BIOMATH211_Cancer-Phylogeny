@@ -7,3 +7,6 @@
 .RData
 *.Rproj*
 .Rproj.user
+
+
+data/**

@@ -37,7 +37,7 @@ cls <- cluster.cells(
     )
 
 # to get CP
-table(cls) / 1000 
+table(cls) / 1000; 
 
 cell.dt <- setDT(sim.cell)[, 'cls' := cls][, lapply(.SD, mean), by = 'cls', .SDcols = names(sim.cell)[1:30]];
 tree <- plot.nj.tree(dist(cell.dt));
@@ -68,7 +68,10 @@ snv.mat <- convert.dt2matrix(
     y.axis = 'snv.id'
     );
 
-bin.snv.mat <- snv.mat
-bin.snv.mat[bin.snv.mat > 0] <- 1
+bin.snv.mat <- snv.mat;
+bin.snv.mat[bin.snv.mat > 0] <- 1;
 tree <- plot.nj.tree(dist(bin.snv.mat, method = 'manhattan'));
-root(tree, out = c(1:3))
+root(tree, out = c(1:3));
+
+myBoots <- boot.phylo(tree, as.matrix(cell.dt[, 2:31]), function(e) root(bionj(dist(e)), 1), trees = TRUE);
+
