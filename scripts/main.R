@@ -35,7 +35,7 @@ for (var in names(ARGS)) {
     assign(var, as.numeric(ARGS[[var]]));
     }
 name <- paste0('sim_K', nclone, '_M', nsnv, '_C', ncell, '_N', noise);
-out.dir <- file.path(repo.dir, 'data',  name);
+out.dir <- file.path(repo.dir, 'data', 'sim-output', name);
 if (!file.exists(out.dir)) dir.create(out.dir, recursive = TRUE);
 ###################################################################################################
 # Simulate single cell calls
@@ -61,13 +61,13 @@ fwrite(
 ###################################################################################################
 # NJ - clustering and visualization
 ###################################################################################################
-dist.mat <- proxy::dist(
+dist.mat <- dist(
     x = cell.dt[, paste0('snv.', 1:nsnv), with = FALSE],
-    method = 'Jaccard'
+    method = 'Manhattan'
     );
 dimnames(dist.mat) <- cell.dt$cell.id;
 if (any(dist.mat > 100)) {
-    dist.mat <- (scale(dist.mat) + 1) * 25;    
+    dist.mat <- (scale(dist.mat) + 1) * 25;
     }
 nj.tree <- cluster.nj(dist.mat, n.cls = nclone);
 plot.figure(
