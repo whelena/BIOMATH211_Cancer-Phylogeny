@@ -1,4 +1,4 @@
-convert.dt2matrix<- function(
+convert.dt2matrix <- function(
     DT,
     value = 'CCF',
     x.axis = 'snv.id',
@@ -17,12 +17,11 @@ convert.dt2matrix<- function(
     DT  <- unique(DT);
     arr <- dcast(DT, x ~ y, value.var = 'val', fill = 0);
     # set x.axis as rownames
-    rows            <- arr[[1]];
-    cols            <- names(arr)[-1];
-    arr             <- as.matrix(arr[, -1]);
-    rownames(arr)   <- rows;
-    colnames(arr)   <- cols;
-
+    # rows            <- arr[[1]];
+    # cols            <- names(arr)[-1];
+    # arr             <- as.matrix(arr[, -1]);
+    # rownames(arr)   <- rows;
+    setnames(clone.mp, old = 'x', new = x.axis);
     if (!is.null(levels(DT$y)) & ncol(arr) > 1) {
         arr <- arr[, levels(DT[, y])];
         }
